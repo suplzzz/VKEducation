@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -25,6 +26,7 @@ import com.suplz.vkeducation.ui.theme.VKEducationTheme
 
 @Composable
 fun AppDetailsScreen(
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val app = remember { getApp() }
@@ -34,12 +36,9 @@ fun AppDetailsScreen(
 
     var descriptionCollapsed by remember { mutableStateOf(false) }
 
-    Column(modifier) {
+    Column(modifier.safeDrawingPadding()) {
         Toolbar(
-            onBackClick = {
-                // TODO: Открыть предыдущий экран через Jetpack Navigation
-                Toast.makeText(context, underDevelopmentText, Toast.LENGTH_SHORT).show()
-            },
+            onBackClick = onBackClick,
             onShareClick = {
                 Toast.makeText(context, underDevelopmentText, Toast.LENGTH_SHORT).show()
             },
@@ -116,6 +115,7 @@ private fun Preview() {
     VKEducationTheme {
         AppDetailsScreen(
             modifier = Modifier.fillMaxSize(),
+            onBackClick = {}
         )
     }
 }
