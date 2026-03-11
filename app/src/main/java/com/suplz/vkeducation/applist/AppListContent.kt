@@ -1,6 +1,5 @@
 package com.suplz.vkeducation.applist
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,9 +8,9 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.suplz.vkeducation.ui.theme.VKEducationTheme
@@ -23,30 +22,34 @@ fun AppListContent(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LazyColumn(
+    Surface(
         modifier = modifier
             .padding(top = innerPadding.calculateTopPadding())
-            .fillMaxSize()
-            .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
-            .background(MaterialTheme.colorScheme.onPrimary),
-        contentPadding = PaddingValues(bottom = innerPadding.calculateBottomPadding())
+            .fillMaxSize(),
+        shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
+        color = MaterialTheme.colorScheme.onPrimary
     ) {
-        itemsIndexed(apps) { index, appListItem ->
+        LazyColumn(
+            contentPadding = PaddingValues(bottom = innerPadding.calculateBottomPadding())
+        ) {
+            itemsIndexed(apps) { index, appListItem ->
 
-            AppListItemCard(
-                appListItem,
-                onClick = onClick
-            )
-
-            if (index < apps.lastIndex) {
-                HorizontalDivider(
-                    thickness = 1.dp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.25f),
-                    modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+                AppListItemCard(
+                    appListItem,
+                    onClick = onClick
                 )
+
+                if (index < apps.lastIndex) {
+                    HorizontalDivider(
+                        thickness = 1.dp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.25f),
+                        modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+                    )
+                }
             }
         }
     }
+
 }
 
 @Preview(showBackground = true)
