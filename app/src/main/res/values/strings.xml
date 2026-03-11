@@ -16,4 +16,7 @@
     <string name="app_details_developer">Разработчик</string>
 
     <string name="under_developement">В процессе разработки</string>
+    <string name="apps">Приложения</string>
+    <string name="rustore_logo">Логотип Rustore</string>
+    <string name="icon_name">%1$s иконка</string>
 </resources>
