@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">VKEducation</string>
+    <string name="category_app">Приложения</string>
+    <string name="category_game">Игры</string>
+
+    <string name="app_details_age">Возраст</string>
+    <string name="app_details_size">Размер</string>
+
+    <string name="install">Установить</string>
+
+    <string name="app_details_screenshots">Скриншоты</string>
+
+    <string name="app_details_description">Описание приложения</string>
+    <string name="app_details_read_more">Читать подробнее</string>
+
+    <string name="app_details_developer">Разработчик</string>
+
+    <string name="under_developement">В процессе разработки</string>
+    <string name="apps">Приложения</string>
+    <string name="rustore_logo">Логотип Rustore</string>
+    <string name="icon_name">%1$s иконка</string>
 </resources>
