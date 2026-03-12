@@ -74,7 +74,7 @@ fun AppListItemCard(
             Spacer(Modifier.height(4.dp))
 
             Text(
-                text = appSummary.category,
+                text = stringResource(id = appSummary.category.toUiString),
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
                 style = MaterialTheme.typography.bodySmall,
                 maxLines = 1,
@@ -92,7 +92,7 @@ fun AppListItemCardPreview() {
         val mockApp = AppSummary(
             name = "СберБанк Онлайн",
             description = "Больше чем банк",
-            category = Category.APP.toUiString(),
+            category = Category.APP,
             iconUrl = ""
         )
 

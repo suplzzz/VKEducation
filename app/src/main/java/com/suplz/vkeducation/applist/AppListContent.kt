@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.suplz.vkeducation.model.AppSummary
+import com.suplz.vkeducation.model.Category
 import com.suplz.vkeducation.ui.theme.VKEducationTheme
 
 @Composable
@@ -60,19 +61,19 @@ fun AppListContentPreview() {
         val mockApps = listOf(
             AppSummary(
                 name = "VK Видео: кино, сериалы, шоу",
-                category = "Развлечения",
+                category = Category.APP,
                 iconUrl = "",
                 description = "Смотри шоу, мультики, ТВ, сериалы и блогеров"
             ),
             AppSummary(
                 name = "СберБанк Онлайн",
-                category = "Финансы",
+                category = Category.APP,
                 iconUrl = "",
                 description = "Больше чем банк"
             ),
             AppSummary(
                 name = "Авито – услуги, работа, авто",
-                category = "Покупки",
+                category = Category.APP,
                 iconUrl = "",
                 description = "Объявления: услуги, товары, недвижимость"
             )
