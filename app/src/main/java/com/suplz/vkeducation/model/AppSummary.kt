@@ -1,6 +1,6 @@
-package com.suplz.vkeducation.applist
+package com.suplz.vkeducation.model
 
-data class AppListItem(
+data class AppSummary(
     val name: String,
     val category: String,
     val iconUrl: String,

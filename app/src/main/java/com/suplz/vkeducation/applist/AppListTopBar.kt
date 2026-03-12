@@ -35,6 +35,7 @@ fun AppListTopBar(
         Icon(
             painter = painterResource(R.drawable.rustore_color_logo),
             contentDescription = stringResource(R.string.rustore_logo),
+            tint = MaterialTheme.colorScheme.onBackground
         )
 
         IconButton(
@@ -46,13 +47,14 @@ fun AppListTopBar(
                 modifier = Modifier
                     .size(48.dp)
                     .background(
-                        color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.25f)
+                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.25f)
                     ),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     painter = painterResource(R.drawable.square_4_outline_28),
                     contentDescription = stringResource(R.string.apps),
+                    tint = MaterialTheme.colorScheme.onBackground
                 )
             }
 

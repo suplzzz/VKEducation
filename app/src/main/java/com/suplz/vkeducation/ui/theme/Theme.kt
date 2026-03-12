@@ -1,6 +1,7 @@
 package com.suplz.vkeducation.ui.theme
 
 import android.os.Build
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -12,13 +13,15 @@ import androidx.compose.ui.platform.LocalContext
 private val DarkColorScheme = darkColorScheme(
     primary = RuStoreBlue,
     secondary = PurpleGrey80,
-    tertiary = Pink80
+    tertiary = Pink80,
+    background = DarkBackground,
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = RuStoreBlue,
     secondary = PurpleGrey40,
-    tertiary = Pink40
+    tertiary = Pink40,
+    background = LightBackground,
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -30,12 +33,9 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
     */
 )
-
 @Composable
 fun VKEducationTheme(
-    // темная тема не поддерживается приложением
-    // при изменениях сменить false на isSystemInDarkTheme()
-    darkTheme: Boolean = false,
+    darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit,

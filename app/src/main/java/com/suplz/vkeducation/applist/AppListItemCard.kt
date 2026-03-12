@@ -23,12 +23,13 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.suplz.vkeducation.R
 import com.suplz.vkeducation.mapper.toUiString
+import com.suplz.vkeducation.model.AppSummary
 import com.suplz.vkeducation.model.Category
 import com.suplz.vkeducation.ui.theme.VKEducationTheme
 
 @Composable
 fun AppListItemCard(
-    appListItem: AppListItem,
+    appSummary: AppSummary,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -39,11 +40,11 @@ fun AppListItemCard(
         verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
-            model = appListItem.iconUrl,
+            model = appSummary.iconUrl,
             error = painterResource(R.drawable.sber_logo),
             contentDescription = stringResource(
                 R.string.icon_name,
-                appListItem.name
+                appSummary.name
             ),
             modifier = Modifier
                 .padding(16.dp)
@@ -55,7 +56,7 @@ fun AppListItemCard(
             modifier = Modifier.padding(end = 16.dp)
         ) {
             Text(
-                text = appListItem.name,
+                text = appSummary.name,
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleMedium,
                 maxLines = 1,
@@ -63,7 +64,7 @@ fun AppListItemCard(
             )
 
             Text(
-                text = appListItem.description,
+                text = appSummary.description,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
@@ -73,7 +74,7 @@ fun AppListItemCard(
             Spacer(Modifier.height(4.dp))
 
             Text(
-                text = appListItem.category,
+                text = appSummary.category,
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
                 style = MaterialTheme.typography.bodySmall,
                 maxLines = 1,
@@ -88,7 +89,7 @@ fun AppListItemCard(
 @Composable
 fun AppListItemCardPreview() {
     VKEducationTheme {
-        val mockApp = AppListItem(
+        val mockApp = AppSummary(
             name = "СберБанк Онлайн",
             description = "Больше чем банк",
             category = Category.APP.toUiString(),
@@ -96,7 +97,7 @@ fun AppListItemCardPreview() {
         )
 
         AppListItemCard(
-            appListItem = mockApp,
+            appSummary = mockApp,
             onClick = {}
         )
     }

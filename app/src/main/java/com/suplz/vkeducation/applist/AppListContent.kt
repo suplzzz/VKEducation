@@ -13,11 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.suplz.vkeducation.model.AppSummary
 import com.suplz.vkeducation.ui.theme.VKEducationTheme
 
 @Composable
 fun AppListContent(
-    apps: List<AppListItem>,
+    apps: List<AppSummary>,
     innerPadding: PaddingValues,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -27,7 +28,7 @@ fun AppListContent(
             .padding(top = innerPadding.calculateTopPadding())
             .fillMaxSize(),
         shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-        color = MaterialTheme.colorScheme.onPrimary
+        color = MaterialTheme.colorScheme.background
     ) {
         LazyColumn(
             contentPadding = PaddingValues(bottom = innerPadding.calculateBottomPadding())
@@ -57,19 +58,19 @@ fun AppListContent(
 fun AppListContentPreview() {
     VKEducationTheme {
         val mockApps = listOf(
-            AppListItem(
+            AppSummary(
                 name = "VK Видео: кино, сериалы, шоу",
                 category = "Развлечения",
                 iconUrl = "",
                 description = "Смотри шоу, мультики, ТВ, сериалы и блогеров"
             ),
-            AppListItem(
+            AppSummary(
                 name = "СберБанк Онлайн",
                 category = "Финансы",
                 iconUrl = "",
                 description = "Больше чем банк"
             ),
-            AppListItem(
+            AppSummary(
                 name = "Авито – услуги, работа, авто",
                 category = "Покупки",
                 iconUrl = "",

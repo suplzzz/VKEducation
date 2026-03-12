@@ -1,6 +1,6 @@
 package com.suplz.vkeducation.model
 
-data class App(
+data class AppDetails(
     val name: String,
     val developer: String,
     val category: Category,
