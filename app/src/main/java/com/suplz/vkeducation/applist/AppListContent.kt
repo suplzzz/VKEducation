@@ -19,11 +19,14 @@ import com.suplz.vkeducation.ui.theme.VKEducationTheme
 
 @Composable
 fun AppListContent(
-    apps: List<AppSummary>,
+    content: AppListState.Content,
     innerPadding: PaddingValues,
     onClick: () -> Unit,
+    onLogoClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val apps = content.appList
+
     Surface(
         modifier = modifier
             .padding(top = innerPadding.calculateTopPadding())
@@ -34,11 +37,16 @@ fun AppListContent(
         LazyColumn(
             contentPadding = PaddingValues(bottom = innerPadding.calculateBottomPadding())
         ) {
-            itemsIndexed(apps) { index, appListItem ->
+            itemsIndexed(
+                apps
+            ) { index, appListItem ->
 
                 AppListItemCard(
                     appListItem,
-                    onClick = onClick
+                    onClick = onClick,
+                    onLogoClick = {
+                        onLogoClick(appListItem.name)
+                    }
                 )
 
                 if (index < apps.lastIndex) {
@@ -79,9 +87,12 @@ fun AppListContentPreview() {
             )
         )
         AppListContent(
-            apps = mockApps,
+            content = AppListState.Content(
+                appList = mockApps
+            ),
             innerPadding = PaddingValues(0.dp),
-            onClick = {}
+            onClick = {},
+            onLogoClick = {}
         )
     }
 }

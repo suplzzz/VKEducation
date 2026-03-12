@@ -31,6 +31,7 @@ import com.suplz.vkeducation.ui.theme.VKEducationTheme
 fun AppListItemCard(
     appSummary: AppSummary,
     onClick: () -> Unit,
+    onLogoClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -50,10 +51,14 @@ fun AppListItemCard(
                 .padding(16.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .size(64.dp)
+                .clickable { onLogoClick() }
         )
 
         Column(
-            modifier = Modifier.padding(end = 16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+
+                .padding(end = 16.dp),
         ) {
             Text(
                 text = appSummary.name,
@@ -98,7 +103,8 @@ fun AppListItemCardPreview() {
 
         AppListItemCard(
             appSummary = mockApp,
-            onClick = {}
+            onClick = {},
+            onLogoClick = {}
         )
     }
 }

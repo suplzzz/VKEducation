@@ -22,6 +22,7 @@ android {
 
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("debug") //костыль для билда релизной сборки
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

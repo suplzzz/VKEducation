@@ -19,7 +19,6 @@
     <string name="apps">Приложения</string>
     <string name="rustore_logo">Логотип Rustore</string>
     <string name="icon_name">%1$s иконка</string>
-
-    <string name="app_details_error">Произошла непредвиденная ошибка</string>
-    <string name="app_details_error_refresh">Перезагрузить</string>
+    <string name="app_error">Произошла непредвиденная ошибка</string>
+    <string name="app_error_refresh">Перезагрузить</string>
 </resources>
