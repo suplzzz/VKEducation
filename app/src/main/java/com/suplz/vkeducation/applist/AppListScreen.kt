@@ -5,7 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.suplz.vkeducation.appdetails.Category
+import com.suplz.vkeducation.mapper.toUiString
+import com.suplz.vkeducation.model.Category
 import com.suplz.vkeducation.ui.theme.RuStoreBlue
 import com.suplz.vkeducation.ui.theme.VKEducationTheme
 

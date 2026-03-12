@@ -1,6 +1,6 @@
-package com.suplz.vkeducation.applist
+package com.suplz.vkeducation.mapper
 
-import com.suplz.vkeducation.appdetails.Category
+import com.suplz.vkeducation.model.Category
 
 fun Category.toUiString(): String {
     return when (this) {

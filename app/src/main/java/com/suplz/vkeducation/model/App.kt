@@ -1,4 +1,4 @@
-package com.suplz.vkeducation.appdetails
+package com.suplz.vkeducation.model
 
 data class App(
     val name: String,
