@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.suplz.vkeducation.R
+import com.suplz.vkeducation.ui.theme.RuStoreWhite
 
 @Composable
 fun AppListTopBar(
@@ -35,6 +35,7 @@ fun AppListTopBar(
         Icon(
             painter = painterResource(R.drawable.rustore_color_logo),
             contentDescription = stringResource(R.string.rustore_logo),
+            tint = RuStoreWhite
         )
 
         IconButton(
@@ -46,13 +47,14 @@ fun AppListTopBar(
                 modifier = Modifier
                     .size(48.dp)
                     .background(
-                        color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.25f)
+                        color = RuStoreWhite.copy(alpha = 0.25f)
                     ),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     painter = painterResource(R.drawable.square_4_outline_28),
                     contentDescription = stringResource(R.string.apps),
+                    tint = RuStoreWhite
                 )
             }
 

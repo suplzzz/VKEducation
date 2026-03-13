@@ -22,13 +22,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.suplz.vkeducation.R
-import com.suplz.vkeducation.appdetails.Category
+import com.suplz.vkeducation.mapper.toUiString
+import com.suplz.vkeducation.model.AppSummary
+import com.suplz.vkeducation.model.Category
 import com.suplz.vkeducation.ui.theme.VKEducationTheme
 
 @Composable
 fun AppListItemCard(
-    appListItem: AppListItem,
+    appSummary: AppSummary,
     onClick: () -> Unit,
+    onLogoClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -38,23 +41,27 @@ fun AppListItemCard(
         verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
-            model = appListItem.iconUrl,
+            model = appSummary.iconUrl,
             error = painterResource(R.drawable.sber_logo),
             contentDescription = stringResource(
                 R.string.icon_name,
-                appListItem.name
+                appSummary.name
             ),
             modifier = Modifier
                 .padding(16.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .size(64.dp)
+                .clickable { onLogoClick() }
         )
 
         Column(
-            modifier = Modifier.padding(end = 16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+
+                .padding(end = 16.dp),
         ) {
             Text(
-                text = appListItem.name,
+                text = appSummary.name,
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleMedium,
                 maxLines = 1,
@@ -62,7 +69,7 @@ fun AppListItemCard(
             )
 
             Text(
-                text = appListItem.description,
+                text = appSummary.description,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
@@ -72,7 +79,7 @@ fun AppListItemCard(
             Spacer(Modifier.height(4.dp))
 
             Text(
-                text = appListItem.category,
+                text = stringResource(id = appSummary.category.toUiString),
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
                 style = MaterialTheme.typography.bodySmall,
                 maxLines = 1,
@@ -87,16 +94,17 @@ fun AppListItemCard(
 @Composable
 fun AppListItemCardPreview() {
     VKEducationTheme {
-        val mockApp = AppListItem(
+        val mockApp = AppSummary(
             name = "СберБанк Онлайн",
             description = "Больше чем банк",
-            category = Category.APP.toUiString(),
+            category = Category.APP,
             iconUrl = ""
         )
 
         AppListItemCard(
-            appListItem = mockApp,
-            onClick = {}
+            appSummary = mockApp,
+            onClick = {},
+            onLogoClick = {}
         )
     }
 }
