@@ -9,7 +9,7 @@ class AppDetailsRepositorImpl : AppDetailsRepository {
     private val mapper = AppDetailsMapper()
 
     override suspend fun get(): AppDetails {
-        val dto = appApi.get()
+        val dto = appApi.getAppDetails()
         val domain = mapper.toDomain(dto)
         return domain
     }
