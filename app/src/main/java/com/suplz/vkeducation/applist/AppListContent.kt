@@ -20,7 +20,7 @@ import com.suplz.vkeducation.ui.theme.VKEducationTheme
 @Composable
 fun AppListContent(
     content: AppListState.Content,
-    innerPadding: PaddingValues,
+    contentPadding: PaddingValues,
     onClick: () -> Unit,
     onLogoClick: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -29,20 +29,20 @@ fun AppListContent(
 
     Surface(
         modifier = modifier
-            .padding(top = innerPadding.calculateTopPadding())
+            .padding(top = contentPadding.calculateTopPadding())
             .fillMaxSize(),
         shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         color = MaterialTheme.colorScheme.background
     ) {
         LazyColumn(
-            contentPadding = PaddingValues(bottom = innerPadding.calculateBottomPadding())
+            contentPadding = PaddingValues(bottom = contentPadding.calculateBottomPadding())
         ) {
             itemsIndexed(
                 apps
             ) { index, appListItem ->
 
                 AppListItemCard(
-                    appListItem,
+                    appSummary =  appListItem,
                     onClick = onClick,
                     onLogoClick = {
                         onLogoClick(appListItem.name)
@@ -59,7 +59,6 @@ fun AppListContent(
             }
         }
     }
-
 }
 
 @Preview(showBackground = true)
@@ -90,7 +89,7 @@ fun AppListContentPreview() {
             content = AppListState.Content(
                 appList = mockApps
             ),
-            innerPadding = PaddingValues(0.dp),
+            contentPadding = PaddingValues(0.dp),
             onClick = {},
             onLogoClick = {}
         )

@@ -2,9 +2,7 @@ package com.suplz.vkeducation.applist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -18,12 +16,10 @@ import com.suplz.vkeducation.ui.theme.VKEducationTheme
 
 @Composable
 fun AppListLoading(
-    innerPadding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier
-            .padding(top = innerPadding.calculateTopPadding())
             .fillMaxSize()
             .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
             .background(MaterialTheme.colorScheme.background),
@@ -38,6 +34,6 @@ fun AppListLoading(
 @Composable
 private fun Preview() {
     VKEducationTheme {
-        AppListLoading(modifier = Modifier.fillMaxSize(), innerPadding = PaddingValues(0.dp))
+        AppListLoading(modifier = Modifier.fillMaxSize())
     }
 }

@@ -3,7 +3,6 @@ package com.suplz.vkeducation.applist
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -25,12 +24,10 @@ import com.suplz.vkeducation.ui.theme.VKEducationTheme
 @Composable
 fun AppListError(
     onRefreshClick: () -> Unit,
-    innerPadding: PaddingValues,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
-            .padding(top = innerPadding.calculateTopPadding())
             .fillMaxSize()
             .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
             .background(MaterialTheme.colorScheme.background)
@@ -47,7 +44,10 @@ fun AppListError(
         Button(
             onClick = onRefreshClick,
         ) {
-            Text(text = stringResource(R.string.app_error_refresh), color = MaterialTheme.colorScheme.onBackground)
+            Text(
+                text = stringResource(R.string.app_error_refresh),
+                color = MaterialTheme.colorScheme.onBackground
+            )
         }
     }
 }
@@ -59,7 +59,6 @@ private fun Preview() {
         AppListError(
             onRefreshClick = {},
             modifier = Modifier.fillMaxSize(),
-            innerPadding = PaddingValues(0.dp)
         )
     }
 }

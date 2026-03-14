@@ -1,5 +1,6 @@
 package com.suplz.vkeducation.applist
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -8,6 +9,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.suplz.vkeducation.ui.theme.RuStoreBlue
@@ -42,9 +44,9 @@ fun AppListScreen(
             is AppListState.Content -> {
                 AppListContent(
                     content = currentState,
-                    innerPadding = innerPadding,
+                    contentPadding = innerPadding,
                     onClick = onClick,
-                    onLogoClick = {appName ->
+                    onLogoClick = { appName ->
                         viewModel.onLogoClicked(appName)
                     }
                 )
@@ -53,12 +55,14 @@ fun AppListScreen(
             AppListState.Error -> {
                 AppListError(
                     onRefreshClick = { viewModel.getApps() },
-                    innerPadding = innerPadding
+                    modifier = Modifier.padding(top = innerPadding.calculateTopPadding()),
                 )
             }
 
             AppListState.Loading -> {
-                AppListLoading(innerPadding = innerPadding)
+                AppListLoading(
+                    modifier = Modifier.padding(top = innerPadding.calculateTopPadding()),
+                )
             }
         }
     }
