@@ -2,8 +2,8 @@ package com.suplz.vkeducation.presentation.appdetails
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.suplz.vkeducation.data.appdetails.AppDetailsRepositorImpl
 import com.suplz.vkeducation.domain.appdetails.GetAppDetailsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,14 +11,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AppDetailsViewModel : ViewModel() {
+@HiltViewModel
+class AppDetailsViewModel @Inject constructor(
+    private val getAppDetailsUseCase : GetAppDetailsUseCase
+) : ViewModel() {
 
-    private val getAppDetailsUseCase = GetAppDetailsUseCase(
-        // Подстановку реализации должен делать DI.
-        // Будет доработано в следующих лекциях.
-        appDetailsRepository = AppDetailsRepositorImpl(),
-    )
 
     private val _state = MutableStateFlow<AppDetailsState>(AppDetailsState.Loading)
     val state = _state.asStateFlow()

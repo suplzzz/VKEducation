@@ -14,7 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.suplz.vkeducation.R
 import com.suplz.vkeducation.presentation.appdetails.components.AppDetailsContent
 import com.suplz.vkeducation.presentation.components.ErrorScreen
@@ -22,8 +22,10 @@ import com.suplz.vkeducation.presentation.components.LoadingScreen
 import kotlinx.coroutines.flow.Flow
 
 @Composable
-fun AppDetailsScreen(onBackClick: () -> Boolean) {
-    val viewModel = viewModel<AppDetailsViewModel>()
+fun AppDetailsScreen(
+    onBackClick: () -> Boolean,
+    viewModel: AppDetailsViewModel = hiltViewModel()
+) {
     val state by viewModel.state.collectAsState()
     val events = viewModel.events
 
