@@ -1,5 +1,6 @@
 package com.suplz.vkeducation.presentation.applist
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.suplz.vkeducation.domain.applist.GetAppListUseCase
@@ -43,6 +44,7 @@ class AppListViewModel @Inject constructor(
                 _state.value = AppListState.Content(apps)
 
             }.onFailure {
+                Log.d("HOHOHO", "ERROR : $it")
                 _state.value = AppListState.Error
             }
         }

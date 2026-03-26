@@ -68,18 +68,21 @@ fun AppListContentPreview() {
     VKEducationTheme {
         val mockApps = listOf(
             AppSummary(
+                id = "fa2e31b8-1234-4cf7-9914-108a170a1b01",
                 name = "VK Видео: кино, сериалы, шоу",
                 category = Category.APP,
                 iconUrl = "",
                 description = "Смотри шоу, мультики, ТВ, сериалы и блогеров"
             ),
             AppSummary(
+                id = "fa2e31b8-1234-4cf7-9914-108a170a1b01",
                 name = "СберБанк Онлайн",
                 category = Category.APP,
                 iconUrl = "",
                 description = "Больше чем банк"
             ),
             AppSummary(
+                id = "fa2e31b8-1234-4cf7-9914-108a170a1b01",
                 name = "Авито – услуги, работа, авто",
                 category = Category.APP,
                 iconUrl = "",
