@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun AppDetailsScreen(
-    onBackClick: () -> Boolean,
+    onBackClick: () -> Unit,
     viewModel: AppDetailsViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
@@ -53,7 +53,7 @@ fun AppDetailsScreen(
 
             is AppDetailsState.Error -> {
                 ErrorScreen(
-                    onRefreshClick = { viewModel.getAppDetails() },
+                    onRefreshClick = { viewModel.retryGetAppDetails() },
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(contentPadding),
@@ -65,6 +65,9 @@ fun AppDetailsScreen(
                     content = currentState,
                     onBackClick = {
                         onBackClick()
+                    },
+                    onWishlistClick = {
+                        viewModel.toggleWishlist()
                     },
                     onShareClick = {
                         viewModel.showUnderDevelopmentMessage()

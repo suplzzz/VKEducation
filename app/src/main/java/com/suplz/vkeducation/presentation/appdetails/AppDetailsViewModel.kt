@@ -1,10 +1,11 @@
 package com.suplz.vkeducation.presentation.appdetails
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.suplz.vkeducation.domain.appdetails.GetAppDetailsUseCase
+import com.suplz.vkeducation.domain.appdetails.ObserveAppDetailsUseCase
+import com.suplz.vkeducation.domain.appdetails.ToggleWishlistUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
@@ -18,7 +19,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AppDetailsViewModel @Inject constructor(
-    private val getAppDetailsUseCase : GetAppDetailsUseCase,
+    private val getAppDetailsUseCase: GetAppDetailsUseCase,
+    private val observeAppDetailsUseCase: ObserveAppDetailsUseCase,
+    private val toggleWishlistUseCase: ToggleWishlistUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -31,7 +34,47 @@ class AppDetailsViewModel @Inject constructor(
     val events = _events.receiveAsFlow()
 
     init {
-        getAppDetails()
+        observeAppDetails()
+        loadInitialData()
+    }
+
+    private fun observeAppDetails() {
+        viewModelScope.launch {
+            observeAppDetailsUseCase(appId)
+                .catch {
+                    _state.value = AppDetailsState.Error
+                }
+                .collect { appDetails ->
+                    _state.value = AppDetailsState.Content(
+                        appDetails = appDetails,
+                        descriptionCollapsed = false,
+                        isInWishlist = appDetails.isInWishlist
+                    )
+                }
+        }
+    }
+
+    private fun loadInitialData() {
+        viewModelScope.launch {
+            runCatching {
+                getAppDetailsUseCase(appId)
+            }.onFailure {
+                _state.value = AppDetailsState.Error
+            }
+        }
+    }
+
+    fun retryGetAppDetails() {
+        _state.value = AppDetailsState.Loading
+        loadInitialData()
+    }
+
+    fun toggleWishlist() {
+        viewModelScope.launch {
+            runCatching {
+                toggleWishlistUseCase(appId)
+            }
+        }
     }
 
     fun showUnderDevelopmentMessage() {
@@ -47,23 +90,6 @@ class AppDetailsViewModel @Inject constructor(
             } else {
                 currentState
             }
-        }
-    }
-
-    fun getAppDetails() {
-        viewModelScope.launch {
-            _state.value = AppDetailsState.Loading
-            getAppDetailsUseCase(appId)
-                .catch { e ->
-                    Log.d("HOHOHO", "ERROR : $e")
-                    _state.value = AppDetailsState.Error
-                }
-                .collect { appDetails ->
-                    _state.value = AppDetailsState.Content(
-                        appDetails = appDetails,
-                        descriptionCollapsed = false,
-                    )
-                }
         }
     }
 }
