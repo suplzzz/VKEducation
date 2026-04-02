@@ -95,6 +95,7 @@ fun AppListItemCard(
 fun AppListItemCardPreview() {
     VKEducationTheme {
         val mockApp = AppSummary(
+            id = "fa2e31b8-1234-4cf7-9914-108a170a1b01",
             name = "СберБанк Онлайн",
             description = "Больше чем банк",
             category = Category.APP,

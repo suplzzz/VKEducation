@@ -5,6 +5,7 @@ import javax.inject.Inject
 
 class AppDetailsMapper @Inject constructor() {
     fun toDomain(dto: AppDetailsDto): AppDetails = AppDetails(
+        id = dto.id,
         name = dto.name,
         developer = dto.developer,
         category = dto.category,

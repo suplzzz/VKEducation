@@ -91,6 +91,7 @@ fun AppDetailsHeader(
 @Composable
 private fun Preview() {
     val appDetails = AppDetails(
+        id = "fa2e31b8-1234-4cf7-9914-108a170a1b01",
         name = "Гильдия Героев: Экшен ММО РПГ",
         developer = "VK Play",
         category = Category.GAME,
