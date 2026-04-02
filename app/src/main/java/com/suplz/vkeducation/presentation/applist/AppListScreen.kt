@@ -26,7 +26,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun AppListScreen(
-    onClick: () -> Unit,
+    onClick: (String) -> Unit,
     viewModel: AppListViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()

@@ -1,13 +1,12 @@
 package com.suplz.vkeducation.domain.appdetails
 
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetAppDetailsUseCase @Inject constructor(
     private val appDetailsRepository: AppDetailsRepository,
 ) {
-    suspend operator fun invoke(id: String): AppDetails {
-        val app: AppDetails = appDetailsRepository.get(id)
-
-        return app
+    suspend operator fun invoke(id: String): Flow<AppDetails> {
+        return appDetailsRepository.get(id)
     }
 }
