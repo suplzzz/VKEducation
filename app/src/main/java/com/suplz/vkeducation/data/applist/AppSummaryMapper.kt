@@ -2,8 +2,9 @@ package com.suplz.vkeducation.data.applist
 
 import com.suplz.vkeducation.data.CategoryMapper
 import com.suplz.vkeducation.domain.applist.AppSummary
+import javax.inject.Inject
 
-class AppSummaryMapper(
+class AppSummaryMapper @Inject constructor(
     private val categoryMapper: CategoryMapper
 ) {
     fun toDomain(dto: AppSummaryDto) : AppSummary = AppSummary(

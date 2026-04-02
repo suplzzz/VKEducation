@@ -3,10 +3,12 @@ package com.suplz.vkeducation.data.appdetails
 import com.suplz.vkeducation.data.AppApi
 import com.suplz.vkeducation.domain.appdetails.AppDetails
 import com.suplz.vkeducation.domain.appdetails.AppDetailsRepository
+import javax.inject.Inject
 
-class AppDetailsRepositorImpl : AppDetailsRepository {
-    private val appApi = AppApi()
-    private val mapper = AppDetailsMapper()
+class AppDetailsRepositoryImpl @Inject constructor(
+            private val appApi : AppApi,
+            private val mapper : AppDetailsMapper
+) : AppDetailsRepository {
 
     override suspend fun get(): AppDetails {
         val dto = appApi.getAppDetails()

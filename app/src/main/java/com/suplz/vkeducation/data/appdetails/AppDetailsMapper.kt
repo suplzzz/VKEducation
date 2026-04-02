@@ -1,8 +1,9 @@
 package com.suplz.vkeducation.data.appdetails
 
 import com.suplz.vkeducation.domain.appdetails.AppDetails
+import javax.inject.Inject
 
-class AppDetailsMapper {
+class AppDetailsMapper @Inject constructor() {
     fun toDomain(dto: AppDetailsDto): AppDetails = AppDetails(
         name = dto.name,
         developer = dto.developer,

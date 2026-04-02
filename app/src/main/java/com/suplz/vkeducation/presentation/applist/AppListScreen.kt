@@ -15,23 +15,20 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.suplz.vkeducation.presentation.applist.components.AppListContent
 import com.suplz.vkeducation.presentation.applist.components.AppListTopBar
 import com.suplz.vkeducation.presentation.components.ErrorScreen
 import com.suplz.vkeducation.presentation.components.LoadingScreen
 import com.suplz.vkeducation.presentation.ui.theme.RuStoreBlue
-import com.suplz.vkeducation.presentation.ui.theme.VKEducationTheme
 import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun AppListScreen(
     onClick: () -> Unit,
+    viewModel: AppListViewModel = hiltViewModel()
 ) {
-
-    val viewModel = viewModel<AppListViewModel>()
     val state by viewModel.state.collectAsState()
     val events = viewModel.events
 
@@ -102,15 +99,4 @@ private fun ObserveEvents(
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun AppListScreenPreview() {
-    VKEducationTheme {
-        AppListScreen(
-            onClick = {}
-        )
-    }
-}
-
 
