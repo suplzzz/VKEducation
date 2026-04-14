@@ -1,8 +1,12 @@
 package com.suplz.vkeducation.di
 
+import android.app.Application
+import androidx.room.Room
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.suplz.vkeducation.data.AppApi
+import com.suplz.vkeducation.data.AppDatabase
 import com.suplz.vkeducation.data.appdetails.AppDetailsRepositoryImpl
+import com.suplz.vkeducation.data.appdetails.local.AppDetailsDao
 import com.suplz.vkeducation.data.applist.AppListRepositoryImpl
 import com.suplz.vkeducation.domain.appdetails.AppDetailsRepository
 import com.suplz.vkeducation.domain.applist.AppListRepository
@@ -67,6 +71,22 @@ interface AppModule {
             retrofit: Retrofit
         ): AppApi {
             return retrofit.create()
+        }
+
+        @Provides
+        @Singleton
+        fun provideDatabase(app: Application): AppDatabase {
+            return Room.databaseBuilder(
+                app,
+                AppDatabase::class.java,
+                AppDatabase.DATABASE_NAME
+            ).build()
+        }
+
+        @Provides
+        @Singleton
+        fun provideAppDetailsDao(database: AppDatabase): AppDetailsDao {
+            return database.appDetailsDao()
         }
     }
 }

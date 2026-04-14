@@ -22,7 +22,7 @@ import com.suplz.vkeducation.presentation.ui.theme.VKEducationTheme
 fun AppListContent(
     content: AppListState.Content,
     contentPadding: PaddingValues,
-    onClick: () -> Unit,
+    onClick: (String) -> Unit,
     onLogoClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -44,7 +44,7 @@ fun AppListContent(
 
                 AppListItemCard(
                     appSummary =  appListItem,
-                    onClick = onClick,
+                    onClick = { onClick(appListItem.id) },
                     onLogoClick = {
                         onLogoClick(appListItem.name)
                     }
